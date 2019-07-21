@@ -3,5 +3,5 @@ version: 1.0
 description: Quests module for mcMMO Overhaul
 author: PikaMug
 
-main: me.pikamug.mcMMO_OverhaulQuests
+main: me.pikamug.mcMMOQuests
 depend: [mcMMO, Quests]

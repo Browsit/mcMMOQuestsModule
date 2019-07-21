@@ -1,4 +1,4 @@
-package me.pikamug.mcMMO_OverhaulQuests;
+package me.pikamug.mcMMOQuests;
 
 import java.util.Map;
 
