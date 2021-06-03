@@ -1,5 +1,5 @@
 # mcMMOQuestsModule
-Adds mcMMO Overhaul objectives to Quests
+Adds mcMMO Overhaul reward and requirement to Quests
 
 <b>NOT COMPATIBLE WITH mcMMO Classic!</b>
 
