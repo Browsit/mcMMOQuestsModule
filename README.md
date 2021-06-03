@@ -6,8 +6,8 @@ Adds mcMMO Overhaul objectives to Quests
 ## Download
 
 Distributed through these fine vendors:
-- Spigot (link coming soon)
-- Lectern (link coming soon)
+- Spigot (https://www.spigotmc.org/resources/mcmmo-overhaul-quests-module.92962/)
+- Lectern (https://browsit.org/index.php?route=/resources/resource/2-mcmmo-overhaul-quests-module/)
 
 ## Usage
 
