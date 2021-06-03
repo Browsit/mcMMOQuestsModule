@@ -1,4 +1,16 @@
-package me.pikamug.mcMMOQuests;
+/*******************************************************************************************************
+ * Copyright (c) 2021 Browsit, LLC. All rights reserved.
+ * 
+ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
+ * NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+ * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *******************************************************************************************************/
+
+package org.browsit.mcmmoquests;
 
 import java.util.Map;
 
@@ -16,27 +28,28 @@ public class mcMMOSkillReward extends CustomReward {
 
 	public mcMMOSkillReward() {
         setName("mcMMO Overhaul Skill Reward");
-        setAuthor("PikaMug");
-        setRewardName("%Skill Amount% %Skill Type% Skill Level(s)");
+        setAuthor("Browsit, LLC");
+        addItem("DIAMOND_SWORD", (short)1562);
+        setDisplay("%Skill Amount% %Skill Type% Skill Level(s)");
         addStringPrompt("Skill Type", "Name of the skill type", "ANY");
         addStringPrompt("Skill Amount", "Enter the quantity of skill levels to give", "1");
     }
 	
 	@Override
-	public void giveReward(Player player, Map<String, Object> data) {
+	public void giveReward(final Player player, final Map<String, Object> data) {
 		if (data != null) {
 			if (!UserManager.hasPlayerDataKey(player)) {
 				UserManager.track(new McMMOPlayer(player, new PlayerProfile(player.getName(), player.getUniqueId())));
 			}
-			String skillType = (String)data.getOrDefault("Skill Type", "ANY");
+			final String skillType = (String)data.getOrDefault("Skill Type", "ANY");
 			int skillLevels = 1;
 			try {
 				skillLevels = Integer.parseInt((String)data.getOrDefault("Skill Amount", "1"));
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				// Default to 1
 			}
 			if (skillType.equalsIgnoreCase("ANY")) {
-				for (PrimarySkillType pst : PrimarySkillType.NON_CHILD_SKILLS) {
+				for (final PrimarySkillType pst : PrimarySkillType.NON_CHILD_SKILLS) {
 					UserManager.getPlayer(player).getProfile().addLevels(pst, skillLevels);
 				}
 			} else {
