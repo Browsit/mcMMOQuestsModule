@@ -30,7 +30,7 @@ public class mcMMOSkillRequirement extends CustomRequirement {
 	public mcMMOSkillRequirement() {
 		setName("mcMMO Overhaul Skill Requirement");
 		setAuthor("Browsit, LLC");
-		addItem("DIAMOND_SWORD", (short)1562);
+		setItem("DIAMOND_SWORD", (short)1562);
 		addStringPrompt("Skill Type", "Name of the skill type", "ANY");
 		addStringPrompt("Skill Amount", "Enter the quantity of skill levels to need", "1");
 	}
@@ -59,15 +59,18 @@ public class mcMMOSkillRequirement extends CustomRequirement {
 			} catch (final NumberFormatException e) {
 				// Default to 1
 			}
+			final McMMOPlayer p = UserManager.getPlayer(player);
+			if (p == null) {
+				return false;
+			}
 			if (skillType.equalsIgnoreCase("ANY")) {
 				for (final PrimarySkillType pst : PrimarySkillType.values()) {
-					if (UserManager.getPlayer(player).getProfile().getSkillLevel(pst) >= skillLevels) {
+					if (p.getProfile().getSkillLevel(pst) >= skillLevels) {
 						return true;
 					}
 				}
 			} else {
-				return UserManager.getPlayer(player.getName()).getProfile().getSkillLevel(mcMMO.p.getSkillTools()
-						.matchSkill(skillType)) >= skillLevels;
+				return p.getProfile().getSkillLevel(mcMMO.p.getSkillTools().matchSkill(skillType)) >= skillLevels;
 			}
 		}
 		return false;

@@ -62,17 +62,20 @@ public class mcMMOSkillReward extends CustomReward {
 			} catch (final NumberFormatException e) {
 				// Default to 1
 			}
+			final McMMOPlayer p = UserManager.getPlayer(player);
+			if (p == null) {
+				return;
+			}
 			if (skillType.equalsIgnoreCase("ANY")) {
 				mcMMO.p.getSkillTools();
 				for (final PrimarySkillType pst : SkillTools.NON_CHILD_SKILLS) {
-					UserManager.getPlayer(player).getProfile().addLevels(pst, skillLevels);
+					p.getProfile().addLevels(pst, skillLevels);
 				}
 			} else {
 				if (skillType.equalsIgnoreCase("SALVAGE") || skillType.equalsIgnoreCase("SMELTING")) {
 					Bukkit.getLogger().severe("[mcMMO Overhaul Quests Module] Cannot add levels to child skill");
 				} else {
-					UserManager.getPlayer(player.getName()).getProfile().addLevels(mcMMO.p.getSkillTools()
-							.matchSkill(skillType), skillLevels);
+					p.getProfile().addLevels(mcMMO.p.getSkillTools().matchSkill(skillType), skillLevels);
 				}
 			}
 		}
