@@ -32,20 +32,21 @@ public class mcMMOSkillReward extends CustomReward {
 	public mcMMOSkillReward() {
         setName("mcMMO Overhaul Skill Reward");
         setAuthor("Browsit, LLC");
-        setItem("DIAMOND_SWORD", (short)1562);
+        setItem("DIAMOND_SWORD", (short)0);
         setDisplay("%Skill Amount% %Skill Type% Skill Level(s)");
-        addStringPrompt("Skill Type", "Name of the skill type", "ANY");
+        addStringPrompt("Skill Type", "- Available Skill Types -"
+				+ mcMMOModule.getSuggestions(), "ANY");
         addStringPrompt("Skill Amount", "Enter the quantity of skill levels to give", "1");
     }
 
-    @Override
+	@Override
 	public String getModuleName() {
-		return "mcMMO Overhaul Quests Module";
+		return mcMMOModule.getModuleName();
 	}
 
 	@Override
 	public Map.Entry<String, Short> getModuleItem() {
-		return new AbstractMap.SimpleEntry<>("DIAMOND_SWORD", (short)1562);
+		return mcMMOModule.getModuleItem();
 	}
 	
 	@Override

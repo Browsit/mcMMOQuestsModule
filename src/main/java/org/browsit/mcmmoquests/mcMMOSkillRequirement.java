@@ -30,19 +30,20 @@ public class mcMMOSkillRequirement extends CustomRequirement {
 	public mcMMOSkillRequirement() {
 		setName("mcMMO Overhaul Skill Requirement");
 		setAuthor("Browsit, LLC");
-		setItem("DIAMOND_SWORD", (short)1562);
-		addStringPrompt("Skill Type", "Name of the skill type", "ANY");
+		setItem("DIAMOND_SWORD", (short)0);
+		addStringPrompt("Skill Type", "- Available Skill Types -"
+				+ mcMMOModule.getSuggestions(), "ANY");
 		addStringPrompt("Skill Amount", "Enter the quantity of skill levels to need", "1");
 	}
 
 	@Override
 	public String getModuleName() {
-		return "mcMMO Overhaul Quests Module";
+		return mcMMOModule.getModuleName();
 	}
 
 	@Override
 	public Map.Entry<String, Short> getModuleItem() {
-		return new AbstractMap.SimpleEntry<>("DIAMOND_SWORD", (short)1562);
+		return mcMMOModule.getModuleItem();
 	}
 	
 	@Override
