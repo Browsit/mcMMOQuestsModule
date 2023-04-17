@@ -55,7 +55,8 @@ public class mcMMOXpGainObjective extends CustomObjective implements Listener {
                 }
                 final String[] spl = skillNames.split(",");
                 for (final String str : spl) {
-                    if (str.equals("ANY") || mcMMO.p.getSkillTools().matchSkill(str) != null) {
+                    if (str.equals("ANY") || (mcMMO.p.getSkillTools().matchSkill(str) != null
+                            && mcMMO.p.getSkillTools().matchSkill(str).equals(event.getSkill()))) {
                         incrementObjective(p, this, 1, q);
                         break;
                     }

@@ -16,6 +16,7 @@ import java.util.AbstractMap;
 import java.util.Map;
 
 import com.gmail.nossr50.mcMMO;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import com.gmail.nossr50.datatypes.player.McMMOPlayer;
@@ -71,6 +72,10 @@ public class mcMMOSkillRequirement extends CustomRequirement {
 					}
 				}
 			} else {
+				if (mcMMO.p.getSkillTools().matchSkill(skillType) == null) {
+					Bukkit.getLogger().severe("[mcMMO Overhaul Quests Module] Invalid skill type " + skillType);
+					return false;
+				}
 				return p.getProfile().getSkillLevel(mcMMO.p.getSkillTools().matchSkill(skillType)) >= skillLevels;
 			}
 		}

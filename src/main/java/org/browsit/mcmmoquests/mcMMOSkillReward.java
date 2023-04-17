@@ -76,6 +76,10 @@ public class mcMMOSkillReward extends CustomReward {
 				if (skillType.equalsIgnoreCase("SALVAGE") || skillType.equalsIgnoreCase("SMELTING")) {
 					Bukkit.getLogger().severe("[mcMMO Overhaul Quests Module] Cannot add levels to child skill");
 				} else {
+					if (mcMMO.p.getSkillTools().matchSkill(skillType) == null) {
+						Bukkit.getLogger().severe("[mcMMO Overhaul Quests Module] Invalid skill type " + skillType);
+						return;
+					}
 					p.getProfile().addLevels(mcMMO.p.getSkillTools().matchSkill(skillType), skillLevels);
 				}
 			}
