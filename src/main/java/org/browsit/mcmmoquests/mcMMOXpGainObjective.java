@@ -1,18 +1,17 @@
 package org.browsit.mcmmoquests;
 
-import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
 import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
 import com.gmail.nossr50.mcMMO;
-import me.blackvein.quests.CustomObjective;
-import me.blackvein.quests.Quest;
-import me.blackvein.quests.Quester;
+import me.pikamug.quests.module.BukkitCustomObjective;
+import me.pikamug.quests.player.Quester;
+import me.pikamug.quests.quests.Quest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import java.util.Map;
 
-public class mcMMOXpGainObjective extends CustomObjective implements Listener {
+public class mcMMOXpGainObjective extends BukkitCustomObjective implements Listener {
 
     public mcMMOXpGainObjective() {
         setName("mcMMO Overhaul XP Gain Objective");
@@ -47,7 +46,7 @@ public class mcMMOXpGainObjective extends CustomObjective implements Listener {
         }
         for (final Quest q : quester.getCurrentQuests().keySet()) {
             final Player p = quester.getPlayer();
-            final Map<String, Object> dataMap = getDataForPlayer(p, this, q);
+            final Map<String, Object> dataMap = getDataForPlayer(p.getUniqueId(), this, q);
             if (dataMap != null) {
                 final String skillNames = (String)dataMap.getOrDefault("MMO XP Types", "ANY");
                 if (skillNames == null) {
@@ -57,7 +56,7 @@ public class mcMMOXpGainObjective extends CustomObjective implements Listener {
                 for (final String str : spl) {
                     if (str.equals("ANY") || (mcMMO.p.getSkillTools().matchSkill(str) != null
                             && mcMMO.p.getSkillTools().matchSkill(str).equals(event.getSkill()))) {
-                        incrementObjective(p, this, 1, q);
+                        incrementObjective(p.getUniqueId(), this, q, 1);
                         break;
                     }
                 }

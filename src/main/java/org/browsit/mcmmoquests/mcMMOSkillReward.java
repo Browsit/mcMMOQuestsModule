@@ -14,9 +14,11 @@ package org.browsit.mcmmoquests;
 
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.UUID;
 
 import com.gmail.nossr50.mcMMO;
 import com.gmail.nossr50.util.skills.SkillTools;
+import me.pikamug.quests.module.BukkitCustomReward;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -25,9 +27,7 @@ import com.gmail.nossr50.datatypes.player.PlayerProfile;
 import com.gmail.nossr50.datatypes.skills.PrimarySkillType;
 import com.gmail.nossr50.util.player.UserManager;
 
-import me.blackvein.quests.CustomReward;
-
-public class mcMMOSkillReward extends CustomReward {
+public class mcMMOSkillReward extends BukkitCustomReward {
 
 	public mcMMOSkillReward() {
         setName("mcMMO Overhaul Skill Reward");
@@ -50,7 +50,12 @@ public class mcMMOSkillReward extends CustomReward {
 	}
 	
 	@Override
-	public void giveReward(final Player player, final Map<String, Object> data) {
+	public void giveReward(UUID uuid, final Map<String, Object> data) {
+		final Player player = Bukkit.getPlayer(uuid);
+		if (player == null) {
+			Bukkit.getLogger().severe("[mcMMO Overhaul Quests Module] Player was null for UUID " + uuid);
+			return;
+		}
 		if (data != null) {
 			if (!UserManager.hasPlayerDataKey(player)) {
 				UserManager.track(new McMMOPlayer(player, new PlayerProfile(player.getName(), player.getUniqueId(),
