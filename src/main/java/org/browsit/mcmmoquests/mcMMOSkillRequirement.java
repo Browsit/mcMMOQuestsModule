@@ -17,7 +17,6 @@ import java.util.UUID;
 
 import com.gmail.nossr50.mcMMO;
 import me.pikamug.quests.module.BukkitCustomRequirement;
-import me.pikamug.quests.module.CustomRequirement;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
