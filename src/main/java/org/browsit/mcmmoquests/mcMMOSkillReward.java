@@ -75,7 +75,13 @@ public class mcMMOSkillReward extends BukkitCustomReward {
 			if (skillType.equalsIgnoreCase("ANY")) {
 				mcMMO.p.getSkillTools();
 				for (final PrimarySkillType pst : SkillTools.NON_CHILD_SKILLS) {
-					p.getProfile().addLevels(pst, skillLevels);
+					final int current = UserManager.getOfflinePlayer(player).getProfile().getSkillLevel(pst);
+					final int max = mcMMO.p.getGeneralConfig().getLevelCap(pst);
+					if (current + skillLevels > max) {
+						p.getProfile().modifySkill(pst, max);
+					} else {
+						p.getProfile().addLevels(pst, skillLevels);
+					}
 				}
 			} else {
 				if (skillType.equalsIgnoreCase("SALVAGE") || skillType.equalsIgnoreCase("SMELTING")) {
@@ -85,7 +91,14 @@ public class mcMMOSkillReward extends BukkitCustomReward {
 						Bukkit.getLogger().severe("[mcMMO Overhaul Quests Module] Invalid skill type " + skillType);
 						return;
 					}
-					p.getProfile().addLevels(mcMMO.p.getSkillTools().matchSkill(skillType), skillLevels);
+					PrimarySkillType pst = mcMMO.p.getSkillTools().matchSkill(skillType);
+					final int current = UserManager.getOfflinePlayer(player).getProfile().getSkillLevel(pst);
+					final int max = mcMMO.p.getGeneralConfig().getLevelCap(pst);
+					if (current + skillLevels > max) {
+						p.getProfile().modifySkill(pst, max);
+					} else {
+						p.getProfile().addLevels(pst, skillLevels);
+					}
 				}
 			}
 		}
