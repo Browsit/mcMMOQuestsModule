@@ -12,7 +12,6 @@
 
 package org.browsit.mcmmoquests;
 
-import java.util.AbstractMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -33,10 +32,10 @@ public class mcMMOSkillReward extends BukkitCustomReward {
         setName("mcMMO Overhaul Skill Reward");
         setAuthor("Browsit, LLC");
         setItem("DIAMOND_SWORD", (short)0);
-        setDisplay("%Skill Amount% %Skill Type% Skill Level(s)");
         addStringPrompt("Skill Type", "- Available Skill Types -"
 				+ mcMMOModule.getSuggestions(), "ANY");
         addStringPrompt("Skill Amount", "Enter the quantity of skill levels to give", "1");
+		setDisplay("%Skill Amount% %Skill Type% Skill Level(s)");
     }
 
 	@Override

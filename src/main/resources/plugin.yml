@@ -1,8 +1,8 @@
-name: mcMMO-OverhaulQuests
+name: mcMMOOverhaulQuests
 version: 2.3
 description: Quests module for mcMMO Overhaul
 author: Browsit
 website: https://github.com/Browsit/mcMMOQuestsModule
 
-main: org.browsit.mcmmoquests
+main: org.browsit.mcmmoquests.mcMMOModule
 depend: [mcMMO, Quests]

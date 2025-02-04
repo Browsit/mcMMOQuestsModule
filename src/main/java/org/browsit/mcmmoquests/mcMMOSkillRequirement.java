@@ -34,6 +34,7 @@ public class mcMMOSkillRequirement extends BukkitCustomRequirement {
 		addStringPrompt("Skill Type", "- Available Skill Types -"
 				+ mcMMOModule.getSuggestions(), "ANY");
 		addStringPrompt("Skill Amount", "Enter the quantity of skill levels to need", "1");
+		setDisplay("%Skill Amount% %Skill Type% Skill Level(s)");
 	}
 
 	@Override
