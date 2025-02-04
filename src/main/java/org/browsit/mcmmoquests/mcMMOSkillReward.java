@@ -73,7 +73,6 @@ public class mcMMOSkillReward extends BukkitCustomReward {
 				return;
 			}
 			if (skillType.equalsIgnoreCase("ANY")) {
-				mcMMO.p.getSkillTools();
 				for (final PrimarySkillType pst : SkillTools.NON_CHILD_SKILLS) {
 					final int current = UserManager.getOfflinePlayer(player).getProfile().getSkillLevel(pst);
 					final int max = mcMMO.p.getGeneralConfig().getLevelCap(pst);
