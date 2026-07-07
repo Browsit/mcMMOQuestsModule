@@ -16,6 +16,7 @@ import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
 import com.gmail.nossr50.mcMMO;
 import me.pikamug.quests.enums.ObjectiveType;
 import me.pikamug.quests.module.BukkitCustomObjective;
+import me.pikamug.quests.player.BukkitQuester;
 import me.pikamug.quests.player.Quester;
 import me.pikamug.quests.quests.Quest;
 import org.bukkit.entity.Player;
@@ -53,7 +54,7 @@ public class mcMMOXpGainObjective extends BukkitCustomObjective implements Liste
         if (mcMMOModule.getQuests() == null) {
             return;
         }
-        final Quester quester = mcMMOModule.getQuests().getQuester(event.getPlayer().getUniqueId());
+        final BukkitQuester quester = mcMMOModule.getQuests().getQuester(event.getPlayer().getUniqueId());
         if (quester == null) {
             return;
         }
